@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#001E1F" />
-  <meta name="description" content="EcoRay salgsfejring - tryk SALG og spil lyden." />
+  <meta name="description" content="EcoRay salgsfejring - vælg lyd og tryk SALG." />
   <title>EcoRay · Salg</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,166 +21,317 @@
       --eco-ink: #051111;
       --eco-success: #009E3B;
       --ring: color-mix(in srgb, var(--eco-brand) 35%, transparent);
+      --card: color-mix(in srgb, var(--eco-surface-alt) 88%, black 12%);
     }
     * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      background:
-        radial-gradient(1000px 520px at 50% -15%, color-mix(in srgb, var(--eco-brand) 14%, transparent), transparent 55%),
-        radial-gradient(700px 380px at 100% 110%, color-mix(in srgb, var(--eco-success) 18%, transparent), transparent 50%),
-        linear-gradient(165deg, var(--eco-surface) 0%, var(--eco-green-deep) 55%, var(--eco-surface-alt) 100%);
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      min-height: 100dvh;
       color: var(--eco-paper);
       font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    }
-    body {
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      min-height: 100dvh;
-      position: relative;
-      overflow-x: hidden;
+      background:
+        radial-gradient(900px 480px at 12% -10%, color-mix(in srgb, var(--eco-brand) 16%, transparent), transparent 55%),
+        radial-gradient(700px 420px at 100% 0%, color-mix(in srgb, var(--eco-success) 14%, transparent), transparent 50%),
+        radial-gradient(800px 500px at 80% 110%, color-mix(in srgb, var(--eco-brand) 10%, transparent), transparent 55%),
+        linear-gradient(165deg, var(--eco-surface), var(--eco-green-deep) 48%, var(--eco-surface-alt));
+      padding: 20px 16px 32px;
     }
     body::before {
       content: "EcoRay";
       position: fixed;
-      inset: auto 0 8% 0;
+      left: 0; right: 0; bottom: 6%;
       text-align: center;
-      font-size: clamp(4rem, 18vw, 9rem);
+      font-size: clamp(3.5rem, 16vw, 8rem);
       font-weight: 700;
-      letter-spacing: -0.04em;
-      color: color-mix(in srgb, var(--eco-brand) 7%, transparent);
+      letter-spacing: -0.05em;
+      color: color-mix(in srgb, var(--eco-brand) 6%, transparent);
       pointer-events: none;
-      user-select: none;
       z-index: 0;
     }
-    .wrap {
-      width: min(560px, 100%);
-      display: grid;
-      gap: 16px;
+    .shell {
+      width: min(920px, 100%);
+      margin: 0 auto;
       position: relative;
       z-index: 1;
+      display: grid;
+      gap: 16px;
     }
-    .brand {
+    .top {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
       gap: 10px;
       color: var(--eco-brand);
       font-weight: 700;
       letter-spacing: -0.02em;
-      font-size: 1.05rem;
     }
     .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 9px;
-      background: linear-gradient(145deg, var(--eco-brand), color-mix(in srgb, var(--eco-brand) 40%, var(--eco-success)));
-      box-shadow: 0 0 24px color-mix(in srgb, var(--eco-brand) 35%, transparent);
+      width: 30px; height: 30px; border-radius: 10px;
+      background: linear-gradient(145deg, var(--eco-brand), color-mix(in srgb, var(--eco-brand) 35%, var(--eco-success)));
+      box-shadow: 0 0 22px color-mix(in srgb, var(--eco-brand) 40%, transparent);
+    }
+    .pill {
+      border: 1px solid color-mix(in srgb, var(--eco-brand) 28%, transparent);
+      background: color-mix(in srgb, var(--eco-brand) 10%, transparent);
+      color: var(--eco-brand);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
     }
     h1 {
       margin: 0;
-      text-align: center;
-      font-size: clamp(1.45rem, 4vw, 2rem);
-      letter-spacing: -0.03em;
-      color: var(--eco-paper);
-      font-weight: 700;
+      font-size: clamp(1.6rem, 3.5vw, 2.35rem);
+      letter-spacing: -0.035em;
+      line-height: 1.1;
     }
-    .sub {
-      text-align: center;
-      color: color-mix(in srgb, var(--eco-paper) 68%, var(--eco-neutral-200));
-      margin: -4px 0 2px;
-      font-size: 0.95rem;
+    .lede {
+      margin: 6px 0 0;
+      color: color-mix(in srgb, var(--eco-paper) 70%, var(--eco-neutral-200));
       line-height: 1.45;
+      max-width: 42rem;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 14px;
+    }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
     }
     .card {
-      background: color-mix(in srgb, var(--eco-surface-alt) 82%, black 18%);
-      border: 1px solid color-mix(in srgb, var(--eco-brand) 16%, transparent);
+      background: var(--card);
+      border: 1px solid color-mix(in srgb, var(--eco-brand) 14%, transparent);
       border-radius: 22px;
       padding: 18px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(8px);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.28);
+      backdrop-filter: blur(10px);
     }
     .boom {
       width: 100%;
       border: 0;
-      border-radius: 18px;
-      padding: 30px 18px;
-      font-size: clamp(1.5rem, 5.2vw, 2.2rem);
+      border-radius: 20px;
+      min-height: 168px;
+      padding: 28px 18px;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
       font-weight: 800;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       color: var(--eco-ink);
-      background: linear-gradient(135deg, #7dffc6 0%, var(--eco-brand) 42%, #12d98a 100%);
-      box-shadow:
-        0 0 0 0 var(--ring),
-        0 14px 36px color-mix(in srgb, var(--eco-brand) 32%, transparent);
+      background: linear-gradient(135deg, #9cffd8 0%, var(--eco-brand) 45%, #10d889 100%);
+      box-shadow: 0 0 0 0 var(--ring), 0 16px 40px color-mix(in srgb, var(--eco-brand) 30%, transparent);
       cursor: pointer;
-      transition: transform 0.08s ease, filter 0.15s ease, box-shadow 0.15s ease;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
       font-family: inherit;
+      transition: transform .08s ease, filter .15s ease;
+      -webkit-tap-highlight-color: transparent;
     }
     .boom:hover { filter: brightness(1.04); }
     .boom:active { transform: scale(0.985); }
-    .boom.pulse { animation: pulse 0.95s ease-out 1; }
+    .boom.pulse { animation: pulse .95s ease-out 1; }
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 var(--ring), 0 14px 36px color-mix(in srgb, var(--eco-brand) 32%, transparent); }
-      70% { box-shadow: 0 0 0 30px transparent, 0 14px 36px color-mix(in srgb, var(--eco-brand) 18%, transparent); }
-      100% { box-shadow: 0 0 0 0 transparent, 0 14px 36px color-mix(in srgb, var(--eco-brand) 32%, transparent); }
+      0% { box-shadow: 0 0 0 0 var(--ring), 0 16px 40px color-mix(in srgb, var(--eco-brand) 30%, transparent); }
+      70% { box-shadow: 0 0 0 34px transparent, 0 16px 40px color-mix(in srgb, var(--eco-brand) 16%, transparent); }
+      100% { box-shadow: 0 0 0 0 transparent, 0 16px 40px color-mix(in srgb, var(--eco-brand) 30%, transparent); }
     }
-    .row {
+    .now-playing {
+      margin-top: 14px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .now-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: color-mix(in srgb, var(--eco-paper) 55%, transparent);
+    }
+    .now-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--eco-brand);
+      min-height: 1.4em;
+    }
+    .meter {
+      height: 8px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--eco-paper) 10%, transparent);
+      overflow: hidden;
+    }
+    .meter > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--eco-success), var(--eco-brand));
+      transition: width .12s linear;
+    }
+    .side-actions {
+      display: grid;
       gap: 10px;
+      align-content: start;
     }
     .btn {
       border: 1px solid color-mix(in srgb, var(--eco-paper) 14%, transparent);
       background: color-mix(in srgb, var(--eco-paper) 5%, transparent);
       color: var(--eco-paper);
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-weight: 600;
+      border-radius: 14px;
+      padding: 14px 14px;
+      font-weight: 650;
       cursor: pointer;
       font-family: inherit;
+      text-align: left;
     }
     .btn:hover { background: color-mix(in srgb, var(--eco-paper) 10%, transparent); }
-    .btn.stop {
-      border-color: color-mix(in srgb, #ef4444 45%, transparent);
-      color: #fecaca;
+    .btn.stop { border-color: color-mix(in srgb, #ef4444 45%, transparent); color: #fecaca; }
+    .btn.primary {
+      border-color: color-mix(in srgb, var(--eco-brand) 40%, transparent);
+      background: color-mix(in srgb, var(--eco-brand) 14%, transparent);
+      color: var(--eco-brand);
     }
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 4px 2px 10px;
+    }
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+    .section-title p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: color-mix(in srgb, var(--eco-paper) 58%, transparent);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 420px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .sound {
+      position: relative;
+      text-align: left;
+      border-radius: 16px;
+      border: 1px solid color-mix(in srgb, var(--eco-paper) 12%, transparent);
+      background: color-mix(in srgb, var(--eco-green-deep) 70%, black 30%);
+      color: var(--eco-paper);
+      padding: 14px 14px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color .15s ease, transform .08s ease, background .15s ease;
+      min-height: 108px;
+      display: grid;
+      gap: 8px;
+      align-content: space-between;
+    }
+    .sound:hover {
+      border-color: color-mix(in srgb, var(--eco-brand) 35%, transparent);
+      transform: translateY(-1px);
+    }
+    .sound.selected {
+      border-color: color-mix(in srgb, var(--eco-brand) 70%, transparent);
+      background: color-mix(in srgb, var(--eco-brand) 12%, var(--eco-green-deep));
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--eco-brand) 25%, transparent);
+    }
+    .sound .emoji { font-size: 1.35rem; line-height: 1; }
+    .sound .name { font-weight: 700; letter-spacing: -0.01em; }
+    .sound .meta {
+      font-size: 0.78rem;
+      color: color-mix(in srgb, var(--eco-paper) 58%, transparent);
+    }
+    .sound .check {
+      position: absolute;
+      top: 10px; right: 10px;
+      width: 18px; height: 18px; border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--eco-paper) 25%, transparent);
+      display: grid; place-items: center;
+      font-size: 0.7rem;
+      color: transparent;
+    }
+    .sound.selected .check {
+      background: var(--eco-brand);
+      border-color: var(--eco-brand);
+      color: var(--eco-ink);
+      font-weight: 800;
+    }
+    .custom-box {
+      display: grid;
+      gap: 12px;
+    }
+    .drop {
+      border: 1.5px dashed color-mix(in srgb, var(--eco-brand) 35%, transparent);
+      border-radius: 16px;
+      padding: 18px;
+      background: color-mix(in srgb, var(--eco-brand) 5%, transparent);
+      text-align: center;
+      cursor: pointer;
+    }
+    .drop.drag {
+      background: color-mix(in srgb, var(--eco-brand) 12%, transparent);
+      border-color: var(--eco-brand);
+    }
+    .drop strong { color: var(--eco-brand); }
+    .drop p {
+      margin: 6px 0 0;
+      font-size: 0.85rem;
+      color: color-mix(in srgb, var(--eco-paper) 62%, transparent);
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+    @media (max-width: 560px) {
+      .row { grid-template-columns: 1fr; }
+    }
+    input[type="text"], input[type="url"] {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid color-mix(in srgb, var(--eco-brand) 22%, transparent);
+      background: var(--eco-green-deep);
+      color: var(--eco-paper);
+      padding: 12px 14px;
+      font: inherit;
+    }
+    input[type="file"] { display: none; }
     label.field {
       display: grid;
       gap: 8px;
-      color: color-mix(in srgb, var(--eco-paper) 72%, var(--eco-neutral-200));
       font-size: 0.9rem;
+      color: color-mix(in srgb, var(--eco-paper) 72%, transparent);
       font-weight: 500;
     }
-    select, input[type="range"], input[type="file"] { width: 100%; accent-color: var(--eco-brand); }
-    select {
-      background: var(--eco-green-deep);
-      color: var(--eco-paper);
-      border: 1px solid color-mix(in srgb, var(--eco-brand) 22%, transparent);
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 1rem;
-      font-family: inherit;
-    }
-    input[type="file"] {
-      color: color-mix(in srgb, var(--eco-paper) 75%, transparent);
-      font-size: 0.9rem;
-    }
+    input[type="range"] { width: 100%; accent-color: var(--eco-brand); }
     .hint {
-      color: color-mix(in srgb, var(--eco-paper) 62%, var(--eco-neutral-200));
-      font-size: 0.85rem;
-      line-height: 1.45;
       margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: color-mix(in srgb, var(--eco-paper) 58%, transparent);
     }
-    .status {
+    kbd {
+      font: 600 0.8em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      border: 1px solid color-mix(in srgb, var(--eco-paper) 22%, transparent);
+      border-bottom-width: 2px;
+      border-radius: 6px;
+      padding: 1px 6px;
+      background: color-mix(in srgb, var(--eco-paper) 8%, transparent);
+    }
+    .footer {
       text-align: center;
-      min-height: 1.25em;
-      font-weight: 600;
-      color: var(--eco-brand);
-      margin: 12px 0 0;
+      font-size: 0.78rem;
+      color: color-mix(in srgb, var(--eco-paper) 42%, transparent);
+      margin-top: 4px;
     }
     .confetti {
       pointer-events: none;
@@ -198,120 +349,225 @@
       animation: fall linear forwards;
     }
     @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0.85;
-      }
-    }
-    kbd {
-      font: 600 0.8em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      border: 1px solid color-mix(in srgb, var(--eco-paper) 22%, transparent);
-      border-bottom-width: 2px;
-      border-radius: 6px;
-      padding: 1px 6px;
-      background: color-mix(in srgb, var(--eco-paper) 8%, transparent);
-    }
-    .footer {
-      text-align: center;
-      font-size: 0.78rem;
-      color: color-mix(in srgb, var(--eco-paper) 45%, transparent);
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0.85; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="brand" aria-label="EcoRay">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>EcoRay</span>
-    </div>
-    <div>
-      <h1>Salg fejring</h1>
-      <p class="sub">Tryk knappen. Spil lyden. Fejr dealet.</p>
+  <div class="shell">
+    <div class="top">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>EcoRay</span></div>
+      <div class="pill">Intern salgsfejring</div>
     </div>
 
-    <div class="card">
-      <button id="boom" class="boom" type="button" aria-label="Fejr salg">SALG!</button>
-      <p id="status" class="status" aria-live="polite"></p>
-      <div class="row" style="margin-top:12px">
+    <div>
+      <h1>Fejr salget</h1>
+      <p class="lede">Vælg en lyd eller sang, tryk den store knap, og lad kontoret høre det. Bygget til ét tryk på skærm eller Stream Deck.</p>
+    </div>
+
+    <div class="hero">
+      <div class="card">
+        <button id="boom" class="boom" type="button" aria-label="Fejr salg">SALG!</button>
+        <div class="now-playing">
+          <div class="now-label">Valgt lyd</div>
+          <div id="nowTitle" class="now-title">Fanfare</div>
+          <div class="meter" aria-hidden="true"><span id="meter"></span></div>
+        </div>
+      </div>
+      <div class="card side-actions">
+        <button id="preview" class="btn primary" type="button">▶ Forhåndsafspil valgt</button>
         <button id="stop" class="btn stop" type="button">Stop</button>
-        <button id="test" class="btn" type="button">Test lyd</button>
+        <label class="field">
+          Volumen <span id="volLabel">85%</span>
+          <input id="volume" type="range" min="0" max="100" value="85" />
+        </label>
+        <p class="hint">Hotkeys: <kbd>Space</kbd> / <kbd>Enter</kbd> = SALG · <kbd>Esc</kbd> = stop · <kbd>P</kbd> = preview</p>
       </div>
     </div>
 
-    <div class="card" style="display:grid;gap:14px">
-      <label class="field">
-        Lyd
-        <select id="sound">
-          <option value="fanfare">Fanfare</option>
-          <option value="cash">Kasseapparat</option>
-          <option value="airhorn">Airhorn</option>
-          <option value="cheer">Jubel</option>
-          <option value="custom">Egen fil / sang</option>
-        </select>
-      </label>
-
-      <label class="field" id="fileWrap" hidden>
-        Vælg MP3 / WAV / M4A
-        <input id="file" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg" />
-      </label>
-
-      <label class="field">
-        Volumen <span id="volLabel">80%</span>
-        <input id="volume" type="range" min="0" max="100" value="80" />
-      </label>
-
-      <p class="hint">
-        Stream Deck: Website-tast med denne URL, eller Hotkey <kbd>Space</kbd> mens fanen er aktiv.
-        Første tryk aktiverer lyd i browseren.
-      </p>
+    <div>
+      <div class="section-title">
+        <div>
+          <h2>Vælg lyd</h2>
+          <p>Tryk et kort for at vælge. SALG spiller det valgte.</p>
+        </div>
+      </div>
+      <div id="soundGrid" class="grid" role="listbox" aria-label="Lyde"></div>
     </div>
-    <p class="footer">Intern salgsfejring · EcoRay</p>
+
+    <div class="card custom-box">
+      <div class="section-title" style="margin:0">
+        <div>
+          <h2>Din sang eller fil</h2>
+          <p>Upload fra computer, eller indsæt et direkte link til en MP3/WAV.</p>
+        </div>
+      </div>
+      <div id="drop" class="drop" tabindex="0" role="button" aria-label="Upload lydfil">
+        <strong>Slip fil her</strong> eller klik for at vælge
+        <p>MP3, WAV, M4A, OGG · bliver kun på denne enhed</p>
+      </div>
+      <input id="file" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg" />
+      <div class="row">
+        <input id="url" type="url" placeholder="https://…/min-sang.mp3" autocomplete="off" />
+        <button id="useUrl" class="btn primary" type="button">Brug link</button>
+      </div>
+      <p id="customStatus" class="hint"></p>
+    </div>
+
+    <p class="footer">EcoRay · GitHub Pages · nordisk mint brand</p>
   </div>
 
   <div id="confetti" class="confetti" aria-hidden="true"></div>
 
   <script>
+    const SOUNDS = [
+      {
+        id: "fanfare",
+        name: "Fanfare",
+        emoji: "🎺",
+        meta: "Klassisk sejr",
+        kind: "synth",
+        synth: "fanfare",
+      },
+      {
+        id: "cash",
+        name: "Kasseapparat",
+        emoji: "💰",
+        meta: "Cha-ching",
+        kind: "synth",
+        synth: "cash",
+      },
+      {
+        id: "airhorn",
+        name: "Airhorn",
+        emoji: "📣",
+        meta: "Kontor-alarm",
+        kind: "synth",
+        synth: "airhorn",
+      },
+      {
+        id: "cheer",
+        name: "Jubel",
+        emoji: "🎉",
+        meta: "Crowd burst",
+        kind: "synth",
+        synth: "cheer",
+      },
+      {
+        id: "success",
+        name: "Success chime",
+        emoji: "✨",
+        meta: "Mixkit · free SFX",
+        kind: "url",
+        url: "https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3",
+      },
+      {
+        id: "win",
+        name: "Winning",
+        emoji: "🏆",
+        meta: "Mixkit · free SFX",
+        kind: "url",
+        url: "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3",
+      },
+      {
+        id: "claps",
+        name: "Applaus",
+        emoji: "👏",
+        meta: "Mixkit · free SFX",
+        kind: "url",
+        url: "https://assets.mixkit.co/active_storage/sfx/2009/2009-preview.mp3",
+      },
+      {
+        id: "bell",
+        name: "Serviceklokke",
+        emoji: "🔔",
+        meta: "Mixkit · free SFX",
+        kind: "url",
+        url: "https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3",
+      },
+      {
+        id: "impact",
+        name: "Impact hit",
+        emoji: "💥",
+        meta: "Mixkit · free SFX",
+        kind: "url",
+        url: "https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3",
+      },
+    ];
+
     const $ = (id) => document.getElementById(id);
     const boomBtn = $("boom");
+    const previewBtn = $("preview");
     const stopBtn = $("stop");
-    const testBtn = $("test");
-    const soundSel = $("sound");
-    const fileInput = $("file");
-    const fileWrap = $("fileWrap");
     const volume = $("volume");
     const volLabel = $("volLabel");
-    const statusEl = $("status");
+    const nowTitle = $("nowTitle");
+    const meter = $("meter");
+    const soundGrid = $("soundGrid");
     const confettiEl = $("confetti");
+    const drop = $("drop");
+    const fileInput = $("file");
+    const urlInput = $("url");
+    const useUrlBtn = $("useUrl");
+    const customStatus = $("customStatus");
 
     let audioCtx = null;
-    let customUrl = null;
-    let customAudio = null;
+    let selectedId = "fanfare";
+    let customObjectUrl = null;
+    let customName = null;
+    let customUrlValue = null;
+    let activeAudio = null;
     let activeNodes = [];
-    let customPlaying = null;
+    let meterTimer = null;
+    let unlocked = false;
 
-    const saved = JSON.parse(localStorage.getItem("ecoraySalesCelebration") || "{}");
-    if (saved.sound) soundSel.value = saved.sound;
+    const saved = JSON.parse(localStorage.getItem("ecoraySalesCelebrationV2") || "{}");
+    if (saved.selectedId) selectedId = saved.selectedId;
     if (typeof saved.volume === "number") volume.value = saved.volume;
+    if (saved.customUrlValue) {
+      customUrlValue = saved.customUrlValue;
+      customName = saved.customName || "Link-sang";
+      urlInput.value = customUrlValue;
+    }
     volLabel.textContent = volume.value + "%";
-    fileWrap.hidden = soundSel.value !== "custom";
 
     function persist() {
-      localStorage.setItem("ecoraySalesCelebration", JSON.stringify({
-        sound: soundSel.value,
+      localStorage.setItem("ecoraySalesCelebrationV2", JSON.stringify({
+        selectedId,
         volume: Number(volume.value),
+        customUrlValue,
+        customName,
       }));
-    }
-
-    function setStatus(t) { statusEl.textContent = t || ""; }
-
-    function ensureCtx() {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      if (audioCtx.state === "suspended") audioCtx.resume();
-      return audioCtx;
     }
 
     function vol() {
       return Math.max(0, Math.min(1, Number(volume.value) / 100));
+    }
+
+    function ensureCtx() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      unlocked = true;
+      return audioCtx;
+    }
+
+    function currentSelection() {
+      if (selectedId === "custom-file" && customObjectUrl) {
+        return { id: "custom-file", name: customName || "Din fil", kind: "url", url: customObjectUrl };
+      }
+      if (selectedId === "custom-url" && customUrlValue) {
+        return { id: "custom-url", name: customName || "Din sang (link)", kind: "url", url: customUrlValue };
+      }
+      return SOUNDS.find((s) => s.id === selectedId) || SOUNDS[0];
+    }
+
+    function setNow() {
+      const s = currentSelection();
+      nowTitle.textContent = s.name;
+      [...soundGrid.querySelectorAll(".sound")].forEach((el) => {
+        el.classList.toggle("selected", el.dataset.id === selectedId);
+        el.setAttribute("aria-selected", el.dataset.id === selectedId ? "true" : "false");
+      });
     }
 
     function stopAll() {
@@ -319,14 +575,29 @@
         try { n.stop(); } catch (_) {}
         try { n.disconnect(); } catch (_) {}
       });
-      if (customPlaying) {
-        try { customPlaying.pause(); customPlaying.currentTime = 0; } catch (_) {}
-        customPlaying = null;
+      if (activeAudio) {
+        try { activeAudio.pause(); activeAudio.currentTime = 0; } catch (_) {}
+        activeAudio = null;
       }
-      if (customAudio) {
-        try { customAudio.pause(); customAudio.currentTime = 0; } catch (_) {}
+      if (meterTimer) {
+        clearInterval(meterTimer);
+        meterTimer = null;
       }
-      setStatus("");
+      meter.style.width = "0%";
+    }
+
+    function runMeter(ms) {
+      if (meterTimer) clearInterval(meterTimer);
+      const start = performance.now();
+      meterTimer = setInterval(() => {
+        const p = Math.min(1, (performance.now() - start) / ms);
+        meter.style.width = (p * 100).toFixed(1) + "%";
+        if (p >= 1) {
+          clearInterval(meterTimer);
+          meterTimer = null;
+          setTimeout(() => { meter.style.width = "0%"; }, 250);
+        }
+      }, 40);
     }
 
     function tone(freq, start, dur, type, gainVal) {
@@ -367,144 +638,175 @@
       activeNodes.push(src);
     }
 
-    function playFanfare() {
+    function playSynth(name) {
       const ctx = ensureCtx();
       const t = ctx.currentTime;
-      const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
-      notes.forEach((f, i) => tone(f, t + i * 0.12, 0.28, i === notes.length - 1 ? "sawtooth" : "triangle", 0.22));
-      tone(1318.5, t + 0.72, 0.55, "square", 0.12);
-    }
-
-    function playCash() {
-      const ctx = ensureCtx();
-      const t = ctx.currentTime;
-      for (let i = 0; i < 8; i++) tone(2400 + i * 80, t + i * 0.04, 0.05, "square", 0.08);
-      noiseBurst(t + 0.35, 0.25, 0.2);
-      tone(880, t + 0.4, 0.2, "triangle", 0.15);
-      tone(1320, t + 0.55, 0.25, "triangle", 0.12);
-    }
-
-    function playAirhorn() {
-      const ctx = ensureCtx();
-      const t = ctx.currentTime;
-      const o = ctx.createOscillator();
-      const o2 = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.type = "sawtooth";
-      o2.type = "square";
-      o.frequency.setValueAtTime(174.61, t);
-      o2.frequency.setValueAtTime(174.61 * 1.01, t);
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(0.28 * vol(), t + 0.05);
-      g.gain.setValueAtTime(0.28 * vol(), t + 0.9);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + 1.4);
-      o.connect(g);
-      o2.connect(g);
-      g.connect(ctx.destination);
-      o.start(t);
-      o2.start(t);
-      o.stop(t + 1.45);
-      o2.stop(t + 1.45);
-      activeNodes.push(o, o2);
-    }
-
-    function playCheer() {
-      const ctx = ensureCtx();
-      const t = ctx.currentTime;
-      for (let i = 0; i < 12; i++) {
-        tone(400 + Math.random() * 900, t + i * 0.05, 0.18 + Math.random() * 0.2, "triangle", 0.06);
+      if (name === "fanfare") {
+        const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
+        notes.forEach((f, i) => tone(f, t + i * 0.12, 0.28, i === notes.length - 1 ? "sawtooth" : "triangle", 0.22));
+        tone(1318.5, t + 0.72, 0.55, "square", 0.12);
+        runMeter(1400);
+      } else if (name === "cash") {
+        for (let i = 0; i < 8; i++) tone(2400 + i * 80, t + i * 0.04, 0.05, "square", 0.08);
+        noiseBurst(t + 0.35, 0.25, 0.2);
+        tone(880, t + 0.4, 0.2, "triangle", 0.15);
+        tone(1320, t + 0.55, 0.25, "triangle", 0.12);
+        runMeter(900);
+      } else if (name === "airhorn") {
+        const o = ctx.createOscillator();
+        const o2 = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = "sawtooth";
+        o2.type = "square";
+        o.frequency.setValueAtTime(174.61, t);
+        o2.frequency.setValueAtTime(174.61 * 1.01, t);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.28 * vol(), t + 0.05);
+        g.gain.setValueAtTime(0.28 * vol(), t + 0.9);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 1.4);
+        o.connect(g); o2.connect(g); g.connect(ctx.destination);
+        o.start(t); o2.start(t); o.stop(t + 1.45); o2.stop(t + 1.45);
+        activeNodes.push(o, o2);
+        runMeter(1450);
+      } else if (name === "cheer") {
+        for (let i = 0; i < 12; i++) tone(400 + Math.random() * 900, t + i * 0.05, 0.18 + Math.random() * 0.2, "triangle", 0.06);
+        noiseBurst(t, 0.8, 0.18);
+        tone(523.25, t + 0.2, 0.4, "square", 0.1);
+        tone(659.25, t + 0.35, 0.45, "square", 0.1);
+        tone(783.99, t + 0.5, 0.6, "sawtooth", 0.12);
+        runMeter(1200);
       }
-      noiseBurst(t, 0.8, 0.18);
-      tone(523.25, t + 0.2, 0.4, "square", 0.1);
-      tone(659.25, t + 0.35, 0.45, "square", 0.1);
-      tone(783.99, t + 0.5, 0.6, "sawtooth", 0.12);
     }
 
-    async function playCustom() {
-      if (!customUrl) {
-        setStatus("Vælg en lydfil først");
-        return;
-      }
+    async function playUrl(url) {
       ensureCtx();
-      if (!customAudio) customAudio = new Audio();
-      customAudio.src = customUrl;
-      customAudio.volume = vol();
-      customPlaying = customAudio;
-      try {
-        await customAudio.play();
-        setStatus("Spiller din sang…");
-      } catch (e) {
-        setStatus("Kunne ikke afspille filen (klik igen efter filvalg)");
-      }
+      const a = new Audio(url);
+      a.volume = vol();
+      activeAudio = a;
+      a.ontimeupdate = () => {
+        if (!a.duration || !isFinite(a.duration)) return;
+        meter.style.width = ((a.currentTime / a.duration) * 100).toFixed(1) + "%";
+      };
+      a.onended = () => {
+        meter.style.width = "0%";
+        activeAudio = null;
+      };
+      a.onerror = () => {
+        customStatus.textContent = "Kunne ikke afspille den fil/URL (tjek format eller CORS).";
+      };
+      await a.play();
+    }
+
+    async function playSelection() {
+      const s = currentSelection();
+      stopAll();
+      setNow();
+      if (s.kind === "synth") playSynth(s.synth);
+      else if (s.url) await playUrl(s.url);
+      else customStatus.textContent = "Vælg eller tilføj en lyd først.";
     }
 
     function confetti() {
       const colors = ["#1BFC9E", "#009E3B", "#F7F5EE", "#7dffc6", "#D2D1CD", "#12d98a"];
-      for (let i = 0; i < 48; i++) {
+      for (let i = 0; i < 56; i++) {
         const p = document.createElement("div");
         p.className = "piece";
         p.style.left = Math.random() * 100 + "vw";
         p.style.background = colors[i % colors.length];
-        p.style.animationDuration = 0.9 + Math.random() * 1.2 + "s";
-        p.style.animationDelay = Math.random() * 0.15 + "s";
-        p.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+        p.style.animationDuration = 0.9 + Math.random() * 1.25 + "s";
+        p.style.animationDelay = Math.random() * 0.12 + "s";
         confettiEl.appendChild(p);
-        setTimeout(() => p.remove(), 2200);
+        setTimeout(() => p.remove(), 2300);
       }
     }
 
-    async function celebrate(isTest) {
-      stopAll();
+    async function celebrate() {
       boomBtn.classList.remove("pulse");
       void boomBtn.offsetWidth;
       boomBtn.classList.add("pulse");
-      if (!isTest) confetti();
-      const mode = soundSel.value;
-      setStatus(isTest ? "Test…" : "SALG!");
-      if (mode === "fanfare") playFanfare();
-      else if (mode === "cash") playCash();
-      else if (mode === "airhorn") playAirhorn();
-      else if (mode === "cheer") playCheer();
-      else await playCustom();
-      if (mode !== "custom") {
-        setTimeout(() => {
-          if (statusEl.textContent === (isTest ? "Test…" : "SALG!")) setStatus("");
-        }, 1600);
-      }
+      confetti();
+      await playSelection();
     }
 
-    boomBtn.addEventListener("click", () => celebrate(false));
-    testBtn.addEventListener("click", () => celebrate(true));
+    function selectSound(id) {
+      selectedId = id;
+      persist();
+      setNow();
+    }
+
+    function renderGrid() {
+      soundGrid.innerHTML = "";
+      SOUNDS.forEach((s) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "sound" + (s.id === selectedId ? " selected" : "");
+        b.dataset.id = s.id;
+        b.setAttribute("role", "option");
+        b.innerHTML = '<div class="check">✓</div><div class="emoji">' + s.emoji + '</div><div class="name">' + s.name + '</div><div class="meta">' + s.meta + "</div>";
+        b.addEventListener("click", () => selectSound(s.id));
+        soundGrid.appendChild(b);
+      });
+    }
+
+    function setCustomFile(file) {
+      if (!file) return;
+      if (customObjectUrl) URL.revokeObjectURL(customObjectUrl);
+      customObjectUrl = URL.createObjectURL(file);
+      customName = file.name;
+      selectedId = "custom-file";
+      customStatus.textContent = "Klar: " + file.name;
+      persist();
+      setNow();
+    }
+
+    function setCustomUrl() {
+      const u = (urlInput.value || "").trim();
+      if (!u) {
+        customStatus.textContent = "Indsæt et direkte lyd-link først.";
+        return;
+      }
+      customUrlValue = u;
+      customName = "Sang fra link";
+      selectedId = "custom-url";
+      customStatus.textContent = "Link valgt. Tryk SALG eller forhåndsafspil.";
+      persist();
+      setNow();
+    }
+
+    renderGrid();
+    setNow();
+
+    boomBtn.addEventListener("click", () => celebrate());
+    previewBtn.addEventListener("click", () => playSelection());
     stopBtn.addEventListener("click", stopAll);
     volume.addEventListener("input", () => {
       volLabel.textContent = volume.value + "%";
-      if (customAudio) customAudio.volume = vol();
+      if (activeAudio) activeAudio.volume = vol();
       persist();
     });
-    soundSel.addEventListener("change", () => {
-      fileWrap.hidden = soundSel.value !== "custom";
-      persist();
+    useUrlBtn.addEventListener("click", setCustomUrl);
+    drop.addEventListener("click", () => fileInput.click());
+    drop.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }
     });
-    fileInput.addEventListener("change", () => {
-      const f = fileInput.files && fileInput.files[0];
-      if (!f) return;
-      if (customUrl) URL.revokeObjectURL(customUrl);
-      customUrl = URL.createObjectURL(f);
-      soundSel.value = "custom";
-      fileWrap.hidden = false;
-      persist();
-      setStatus("Klar: " + f.name);
+    fileInput.addEventListener("change", () => setCustomFile(fileInput.files && fileInput.files[0]));
+    ;["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => {
+      e.preventDefault(); drop.classList.add("drag");
+    }));
+    ;["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => {
+      e.preventDefault(); drop.classList.remove("drag");
+    }));
+    drop.addEventListener("drop", (e) => {
+      const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      setCustomFile(f);
     });
 
     window.addEventListener("keydown", (e) => {
-      if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA")) return;
-      if (e.code === "Space" || e.key === "Enter") {
-        e.preventDefault();
-        celebrate(false);
-      }
+      if (e.target && ["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) return;
+      if (e.code === "Space" || e.key === "Enter") { e.preventDefault(); celebrate(); }
       if (e.key === "Escape") stopAll();
+      if (e.key.toLowerCase() === "p") { e.preventDefault(); playSelection(); }
     });
-
     window.addEventListener("pointerdown", () => { try { ensureCtx(); } catch (_) {} }, { once: true });
   </script>
 </body>
