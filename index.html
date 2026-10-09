@@ -144,7 +144,7 @@ kbd{border:1px solid rgba(255,255,255,.2);border-bottom-width:2px;border-radius:
 }
 </style>
 </head>
-<body data-build="spacex-v5-qa">
+<body data-build="spacex-v5-sfx">
 <canvas id="stars" aria-hidden="true"></canvas>
 <canvas id="fx" aria-hidden="true"></canvas>
 <div class="scan" aria-hidden="true"></div>
@@ -155,7 +155,7 @@ kbd{border:1px solid rgba(255,255,255,.2);border-bottom-width:2px;border-radius:
 <div class="shell">
   <header class="nav">
     <div class="brand"><i aria-hidden="true"></i> EcoRay // Mission Control</div>
-    <div class="meta">Status <b id="status">ARMED</b> · Build spacex-v5-qa</div>
+    <div class="meta">Status <b id="status">ARMED</b> · Build spacex-v5-sfx</div>
   </header>
 
   <section class="hero" aria-label="Launch console">
@@ -165,7 +165,7 @@ kbd{border:1px solid rgba(255,255,255,.2);border-bottom-width:2px;border-radius:
       <p class="lede">Mission-control celebration console. Arm a payload. Hit launch. Sales floor gets the signal.</p>
       <div class="telemetry" aria-label="Telemetry">
         <div class="tcell"><span>Target</span><strong>Closed won</strong></div>
-        <div class="tcell"><span>Audio</span><strong id="telAudio">Fanfare</strong></div>
+        <div class="tcell"><span>Audio</span><strong id="telAudio">Master celebration</strong></div>
         <div class="tcell"><span>Volume</span><strong id="telVol">85%</strong></div>
       </div>
     </div>
@@ -173,7 +173,7 @@ kbd{border:1px solid rgba(255,255,255,.2);border-bottom-width:2px;border-radius:
       <button class="launch" id="launch" type="button" aria-label="Launch celebration">LAUNCH</button>
       <div class="now">
         <div class="lbl">Selected payload</div>
-        <div class="val" id="now">Fanfare // synth</div>
+        <div class="val" id="now">Master celebration // master</div>
         <div class="meter" aria-hidden="true"><i id="meter"></i></div>
       </div>
       <div class="controls">
@@ -189,7 +189,7 @@ kbd{border:1px solid rgba(255,255,255,.2);border-bottom-width:2px;border-radius:
 
   <section class="panel" aria-labelledby="libTitle">
     <h2 id="libTitle">Payload library</h2>
-    <p class="sub">SFX + free beds. Click to arm. Double-click to preview. Launch plays the armed payload.</p>
+    <p class="sub">Classic celebration SFX first (try Master). Click to arm. Double-click to preview. Launch plays the armed payload.</p>
     <div class="grid" id="grid" role="listbox" aria-label="Payload library"></div>
   </section>
 
@@ -212,31 +212,31 @@ kbd{border:1px solid rgba(255,255,255,.2);border-bottom-width:2px;border-radius:
 
   <footer class="foot-bar">
     <span>EcoRay deal lock · internal console</span>
-    <span>GitHub Pages · spacex-v5-qa</span>
+    <span>GitHub Pages · spacex-v5-sfx</span>
   </footer>
 </div>
 
 <script>
 const LIB = [
-  {id:'fanfare', name:'Fanfare', kind:'synth', fn:'fanfare', tag:'SYNTH', blurb:'Victory brass stack'},
-  {id:'cash', name:'Cash lock', kind:'synth', fn:'cash', tag:'SYNTH', blurb:'Register confirm'},
-  {id:'airhorn', name:'Airhorn', kind:'synth', fn:'airhorn', tag:'SYNTH', blurb:'Floor alert'},
-  {id:'cheer', name:'Crowd burst', kind:'synth', fn:'cheer', tag:'SYNTH', blurb:'Room energy'},
-  {id:'success', name:'Success ping', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3', blurb:'Clean confirm'},
+  {id:'master', name:'Master celebration', kind:'synth', fn:'master', tag:'MASTER', blurb:'Fanfare + confetti + chime stack'},
+  {id:'fanfare', name:'Classic fanfare', kind:'synth', fn:'fanfare', tag:'SYNTH', blurb:'Trumpet victory line'},
+  {id:'partyhorn', name:'Party horn', kind:'synth', fn:'partyhorn', tag:'SYNTH', blurb:'Birthday blower'},
+  {id:'confetti', name:'Confetti pop', kind:'synth', fn:'confetti', tag:'SYNTH', blurb:'Pops + sparkle'},
+  {id:'champagne', name:'Champagne cork', kind:'synth', fn:'champagne', tag:'SYNTH', blurb:'Pop + fizz'},
+  {id:'bells', name:'Celebration bells', kind:'synth', fn:'bells', tag:'SYNTH', blurb:'Bright bell peal'},
+  {id:'cash', name:'Cash register', kind:'synth', fn:'cash', tag:'SYNTH', blurb:'Classic cha-ching'},
+  {id:'crowd', name:'Crowd cheer', kind:'synth', fn:'cheer', tag:'SYNTH', blurb:'Stadium energy'},
+  {id:'success', name:'Success chime', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3', blurb:'Clean win ping'},
   {id:'win', name:'Winning sting', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3', blurb:'Short win hit'},
-  {id:'claps', name:'Applause', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2009/2009-preview.mp3', blurb:'Human clap bed'},
-  {id:'notify', name:'Console notify', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3', blurb:'UI confirm'},
-  {id:'impact', name:'Impact hit', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3', blurb:'Hard hit'},
-  {id:'drive', name:'Drive pulse', kind:'url', tag:'BED', url:'https://assets.mixkit.co/active_storage/sfx/2393/2393-preview.mp3', blurb:'Tech pulse'},
-  {id:'rise', name:'Rise tone', kind:'url', tag:'BED', url:'https://assets.mixkit.co/active_storage/sfx/2390/2390-preview.mp3', blurb:'Tension rise'},
-  {id:'spark', name:'Spark trail', kind:'url', tag:'BED', url:'https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3', blurb:'Bright spark'},
+  {id:'claps', name:'Applause', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2009/2009-preview.mp3', blurb:'Clap bed'},
+  {id:'notify', name:'Bright notify', kind:'url', tag:'SFX', url:'https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3', blurb:'UI celebrate'},
 ];
 
 const STORE_KEY = 'ecorayDealLockV5';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = id => document.getElementById(id);
 
-let ctx=null, sel='fanfare', customObj=null, customName=null, customLink=null;
+let ctx=null, sel='master', customObj=null, customName=null, customLink=null;
 let nodes=[], active=null, parts=[], meterT=null, launches=0, busy=false, toastT=null;
 const stars=$('stars'), fx=$('fx');
 let sc=stars.getContext('2d'), fc=fx.getContext('2d');
@@ -248,7 +248,7 @@ function loadState(){
     if(typeof s.volume==='number') $('vol').value=s.volume;
     if(s.sel && (LIB.some(x=>x.id===s.sel) || s.sel==='link')) sel=s.sel;
     if(s.customLink){ customLink=s.customLink; $('url').value=s.customLink; if(sel==='link') {/* keep */} }
-    if(s.sel==='file') sel='fanfare'; // object URLs do not survive reload
+    if(s.sel==='file') sel='master'; // object URLs do not survive reload
   }catch(e){}
   $('volLab').textContent=$('vol').value+'%';
   $('vol').setAttribute('aria-valuenow', $('vol').value);
@@ -258,7 +258,7 @@ function saveState(){
   try{
     localStorage.setItem(STORE_KEY, JSON.stringify({
       volume:+$('vol').value,
-      sel: sel==='file' ? 'fanfare' : sel,
+      sel: sel==='file' ? 'master' : sel,
       customLink: customLink||null,
     }));
   }catch(e){}
@@ -353,16 +353,87 @@ function meter(ms){
 }
 function synth(name){
   const t=ctx.currentTime;
-  if(name==='fanfare'){ [523.25,659.25,783.99,1046.5,1318.5].forEach((f,i)=>tone(f,t+i*.1,.28,i>3?'sawtooth':'square',.18)); meter(1200); }
-  else if(name==='cash'){ for(let i=0;i<10;i++) tone(2000+i*70,t+i*.03,.04,'square',.06); noise(t+.25,.2,.16); tone(880,t+.3,.18,'triangle',.12); meter(800); }
-  else if(name==='airhorn'){
-    const o=ctx.createOscillator(), o2=ctx.createOscillator(), a=ctx.createGain();
-    o.type='sawtooth'; o2.type='square'; o.frequency.value=174; o2.frequency.value=176;
-    a.gain.setValueAtTime(.0001,t); a.gain.exponentialRampToValueAtTime(.24*vol(),t+.04); a.gain.exponentialRampToValueAtTime(.0001,t+1.2);
-    o.connect(a); o2.connect(a); a.connect(ctx.destination); o.start(t); o2.start(t); o.stop(t+1.25); o2.stop(t+1.25); nodes.push(o,o2); meter(1250);
+  if(name==='master'){
+    // layered classic celebration: cork + fanfare + bells + confetti + final chime
+    // cork
+    noise(t, .08, .22); tone(180, t, .06, 'sine', .08); tone(90, t+.02, .08, 'triangle', .05);
+    // fizz
+    noise(t+.05, .35, .08);
+    // fanfare climb
+    [523.25,659.25,783.99,1046.5].forEach((f,i)=>tone(f, t+.12+i*.11, .3, i>2?'sawtooth':'square', .17));
+    // confetti pops
+    for(let i=0;i<8;i++){ const tt=t+.2+i*.07; noise(tt,.04,.12); tone(1200+i*180, tt, .05, 'square', .05); }
+    // bell peal
+    [1046.5,1318.5,1568,2093].forEach((f,i)=>{ const tt=t+.55+i*.09; tone(f,tt,.5,'sine',.12); tone(f*2.01,tt,.35,'sine',.04); });
+    // final big major chord
+    const fin=t+1.05; [523.25,659.25,783.99,1046.5].forEach(f=>tone(f, fin, .7, 'triangle', .1));
+    tone(1318.5, fin+.05, .55, 'sine', .08);
+    noise(fin, .15, .1);
+    meter(1800);
+  } else if(name==='fanfare'){
+    const notes=[392,523.25,659.25,783.99,1046.5,783.99,1046.5,1318.5];
+    notes.forEach((f,i)=>tone(f, t+i*.12, .32, i>5?'sawtooth':'square', .18));
+    [523.25,659.25,783.99].forEach(f=>tone(f, t+.95, .55, 'triangle', .1));
+    meter(1600);
+  } else if(name==='partyhorn'){
+    // rising party blower
+    const o=ctx.createOscillator(), a=ctx.createGain(), o2=ctx.createOscillator();
+    o.type='sawtooth'; o2.type='square';
+    o.frequency.setValueAtTime(220, t); o.frequency.linearRampToValueAtTime(520, t+.55);
+    o2.frequency.setValueAtTime(222, t); o2.frequency.linearRampToValueAtTime(530, t+.55);
+    a.gain.setValueAtTime(.0001,t); a.gain.exponentialRampToValueAtTime(.2*vol(), t+.05);
+    a.gain.setValueAtTime(.2*vol(), t+.45); a.gain.exponentialRampToValueAtTime(.0001, t+.75);
+    o.connect(a); o2.connect(a); a.connect(ctx.destination);
+    o.start(t); o2.start(t); o.stop(t+.8); o2.stop(t+.8); nodes.push(o,o2);
+    noise(t+.5, .2, .1);
+    meter(850);
+  } else if(name==='confetti'){
+    for(let i=0;i<12;i++){
+      const tt=t+i*.05;
+      noise(tt, .05, .14);
+      tone(800+Math.random()*1400, tt, .08, 'square', .06);
+      tone(400+Math.random()*600, tt+.02, .1, 'triangle', .04);
+    }
+    tone(1046.5, t+.55, .35, 'sine', .1);
+    tone(1318.5, t+.62, .3, 'sine', .08);
+    meter(1000);
+  } else if(name==='champagne'){
+    // cork pop
+    noise(t, .06, .28);
+    tone(140, t, .05, 'sine', .1);
+    tone(70, t+.01, .08, 'triangle', .07);
+    // fizz tail
+    noise(t+.05, .55, .1);
+    for(let i=0;i<10;i++) tone(2000+Math.random()*2500, t+.08+i*.04, .03, 'sine', .03);
+    tone(880, t+.35, .2, 'triangle', .06);
+    meter(750);
+  } else if(name==='bells'){
+    const bells=[784,988,1175,1319,1568,1976];
+    bells.forEach((f,i)=>{
+      const tt=t+i*.11;
+      tone(f, tt, .65, 'sine', .13);
+      tone(f*2, tt, .4, 'sine', .035);
+      tone(f*3.01, tt, .25, 'sine', .015);
+    });
+    // final chord
+    [784,988,1175,1568].forEach(f=>tone(f, t+.75, .8, 'triangle', .08));
+    meter(1600);
+  } else if(name==='cash'){
+    for(let i=0;i<10;i++) tone(2000+i*70, t+i*.03, .04, 'square', .06);
+    noise(t+.25, .2, .16);
+    tone(880, t+.3, .18, 'triangle', .12);
+    tone(1320, t+.42, .22, 'triangle', .1);
+    meter(800);
+  } else if(name==='cheer'){
+    for(let i=0;i<16;i++) tone(380+Math.random()*950, t+i*.04, .2, 'triangle', .05);
+    noise(t, .75, .15);
+    tone(523.25, t+.2, .4, 'square', .09);
+    tone(659.25, t+.35, .45, 'square', .09);
+    tone(783.99, t+.5, .5, 'sawtooth', .1);
+    meter(1200);
   } else {
-    for(let i=0;i<14;i++) tone(400+Math.random()*900,t+i*.04,.18,'triangle',.05);
-    noise(t,.6,.14); tone(659,t+.25,.4,'square',.1); meter(1000);
+    // fallback fanfare
+    [523.25,659.25,783.99,1046.5].forEach((f,i)=>tone(f,t+i*.1,.28,'square',.16)); meter(1000);
   }
 }
 async function playUrl(u){
@@ -393,7 +464,7 @@ async function playSel(){
   busy=true; $('launch').disabled=true; $('preview').disabled=true; document.body.classList.add('is-launching');
   try{
     await ensure();
-    if(s.kind==='synth'){ synth(s.fn); setTimeout(()=>{ busy=false; $('launch').disabled=false; $('preview').disabled=false; document.body.classList.remove('is-launching'); setStatus('ARMED'); }, 1300); }
+    if(s.kind==='synth'){ const dur=(s.fn==='master'||s.fn==='fanfare'||s.fn==='bells')?1900: (s.fn==='cheer'?1400:1100); synth(s.fn); setTimeout(()=>{ busy=false; $('launch').disabled=false; $('preview').disabled=false; document.body.classList.remove('is-launching'); setStatus('ARMED'); }, dur); }
     else await playUrl(s.url);
   }catch(e){
     msg('Audio blocked until first tap/click, or playback failed.', true);
@@ -460,7 +531,7 @@ function setFile(f){
 function clearCustom(){
   if(customObj) URL.revokeObjectURL(customObj);
   customObj=null; customName=null; customLink=null; $('url').value='';
-  if(sel==='file'||sel==='link') sel='fanfare';
+  if(sel==='file'||sel==='link') sel='master';
   msg('Custom payload cleared.'); setNow();
 }
 
